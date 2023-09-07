@@ -36,7 +36,6 @@ public class Main {
         System.out.println("-------");
 
         System.out.println("Jede einzelne Zahl der Liste ausgegeben: ");
-        /*List<Integer> copyNumbers = */
         numbers.stream()
                 .collect(Collectors.toList())
                 .forEach(number -> System.out.print(number + ", "));
@@ -47,10 +46,16 @@ public class Main {
 
         try {
             Stream<String> data = Files.lines(Path.of("students.csv"));
-            data.forEach(System.out::println);
+            List<Student> studentData = data.skip(1)
+                                            .map(String::trim)
+                                            .filter(line -> !line.isEmpty())
+                                            .distinct()
+                                            .map(Student::new)
+                                            .toList();
             data.close();
+            System.out.println(studentData);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Die Datei konnte nicht eingelesen werden!");
         }
     }
 }
