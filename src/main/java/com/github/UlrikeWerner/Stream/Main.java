@@ -26,7 +26,7 @@ public class Main {
 
         List<Integer> sortNumbers = numbers.stream()
                                             .sorted()
-                                            .toList();
+                                            .collect(Collectors.toList());
         System.out.println("Zahlen aufsteigend sortiert: " + sortNumbers);
         System.out.println("-------");
 
@@ -36,14 +36,11 @@ public class Main {
         System.out.println("-------");
 
         System.out.println("Jede einzelne Zahl der Liste ausgegeben: ");
-        numbers.stream()
-                .collect(Collectors.toList())
-                .forEach(number -> System.out.print(number + ", "));
+        numbers.forEach(number -> System.out.print(number + ", "));
         System.out.println();
         System.out.println("-------");
 
         System.out.println("Extra: ");
-
         try {
             Stream<String> data = Files.lines(Path.of("students.csv"));
             List<Student> studentData = data.skip(1)
