@@ -10,11 +10,17 @@ public class Student {
 
     public Student(String studentData) {
         String[] student = studentData.split(",");
-        //System.out.println(student[0] + " " + student[1] + " " + student[2] + " " + student[3]);
         this.id = Integer.parseInt(student[0]);
         this.name = student[1];
         this.points = Integer.parseInt(student[2]);
         this.age = Integer.parseInt(student[3]);
+    }
+
+    public Student(int id, String name, int points, int age) {
+        this.id = id;
+        this.name = name;
+        this.points = points;
+        this.age = age;
     }
 
     public int getId() {
